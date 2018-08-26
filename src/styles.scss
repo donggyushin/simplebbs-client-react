@@ -1,4 +1,10 @@
+@import "utils";
+
 body {
   margin: 0;
   padding: 0;
+  background-color: $background_gray;
+  color: white;
+  font-family: 'Roboto Slab', serif;
+  box-sizing: border-box;
 }

@@ -1,0 +1,39 @@
+@import "utils";
+
+.container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .box{
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        align-items: center;
+        width: 394px;
+        height: 433px;
+        padding-top: 120px;
+        @include radius;
+        @include boxshadow;
+        .title{
+            color: $background_gray;
+            margin-bottom: 38px;
+        }
+        input{
+            width: 80%;
+            border: 0px;
+            margin-bottom: 30px;
+            height: 25px;
+            @include radius;
+            padding-left: 12px;
+            background-color: $weak_gray;
+        }
+        .first{
+            margin-top: 100px;
+        }
+        button {
+            margin-top: 10px;
+            @include button;
+        }
+    }
+}

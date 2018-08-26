@@ -1,16 +1,27 @@
 import React, { Component } from "react";
 import App from "./App";
 import { connect } from "react-redux";
+import * as userActions from "store/modules/user";
 
 class AppContainer extends Component {
+  componentDidMount() {
+    const { apiGetToken } = this.props;
+    apiGetToken();
+  }
+
   render() {
-    return <App />;
+    const { isLoggedIn } = this.props;
+    return <App isLoggedIn={isLoggedIn} />;
   }
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  isLoggedIn: state.user.isLoggedIn
+});
 
-const mapDispatchToProps = (dispatch, ownProps) => ({});
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  apiGetToken: () => dispatch(userActions.apiGetToken())
+});
 
 export default connect(
   mapStateToProps,
