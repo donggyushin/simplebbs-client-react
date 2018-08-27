@@ -5,7 +5,8 @@ import * as userActions from "store/modules/user";
 
 class AppContainer extends Component {
   componentDidMount() {
-    const { apiGetToken } = this.props;
+    const { apiGetToken, removeToken } = this.props;
+    removeToken();
     apiGetToken();
   }
 
@@ -20,7 +21,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  apiGetToken: () => dispatch(userActions.apiGetToken())
+  apiGetToken: () => dispatch(userActions.apiGetToken()),
+  removeToken: () => dispatch(userActions.removeToken())
 });
 
 export default connect(

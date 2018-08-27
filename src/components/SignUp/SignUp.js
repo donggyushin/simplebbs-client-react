@@ -4,10 +4,10 @@ import classNames from "classnames/bind";
 import { Link } from "react-router-dom";
 const cx = classNames.bind(styles);
 
-const Login = ({ handleInput, username, password, inputSignInButton }) => (
+const SignUp = ({ username, password, clickSignUpButton, handleInput }) => (
   <div className={cx("container")}>
     <div className={cx("box")}>
-      <span className={cx("title")}>Sign In</span>
+      <span className={cx("title")}>Sign Up</span>
       <input
         placeholder="username"
         type="text"
@@ -22,14 +22,13 @@ const Login = ({ handleInput, username, password, inputSignInButton }) => (
         value={password}
         onChange={handleInput}
       />
-      <button className={cx("first")} onClick={inputSignInButton}>
-        Sign In
-      </button>
-      <Link to="/new">
-        <button>Sign up</button>
+      <Link to="/">
+        <button className={cx("first")}>Sign In</button>
       </Link>
+
+      <button onClick={clickSignUpButton}>Sign up</button>
     </div>
   </div>
 );
 
-export default Login;
+export default SignUp;

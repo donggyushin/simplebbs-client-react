@@ -4,8 +4,18 @@ import axios from "axios";
 //actions
 const GET_TOKEN = "user/GET_TOKEN";
 const LOGIN = "user/LOGIN";
+const LOGOUT = "user/LOGOUT";
+const REOMOVETOKEN = "user/REMOVETOKEN";
 
 //action creators
+
+export const removeToken = () => ({
+  type: REOMOVETOKEN
+});
+
+export const logout = () => ({
+  type: LOGOUT
+});
 
 export const getToken = token => ({
   type: GET_TOKEN,
@@ -17,6 +27,40 @@ export const login = () => ({
 });
 
 //api
+
+export const apiSignUp = (username, password) => {
+  return dispatch => {
+    axios
+      .post("/api/auth/new", {
+        username,
+        password
+      })
+      .then(response => response.data)
+      .then(data => {
+        if (data.ok) {
+          console.log("ok");
+        } else {
+          console.log("fail");
+        }
+      })
+      .catch(err => console.log(err));
+  };
+};
+
+export const apiLogout = () => {
+  return dispatch => {
+    axios
+      .get("/api/auth/logout")
+      .then(response => response.data)
+      .then(data => {
+        if (data.ok) {
+          dispatch(logout());
+        }
+      })
+      .catch(err => console.log(err));
+  };
+};
+
 export const apiGetToken = () => {
   return async (dispatch, getState) => {
     axios
@@ -63,12 +107,34 @@ export default function reducer(state = initialState, action) {
       return applyGetTokken(state, action);
     case LOGIN:
       return applyLogin(state, action);
+    case LOGOUT:
+      return applyLogout(state, action);
+    case applyRemoveToken:
+      return applyRemoveToken(state, action);
     default:
       return state;
   }
 }
 
 //reducer actions
+
+const applyRemoveToken = (state, action) => {
+  localStorage.removeItem("token");
+  return {
+    ...state,
+    session_token: null,
+    isLoggedIn: false
+  };
+};
+
+const applyLogout = (state, action) => {
+  localStorage.removeItem("token");
+  return {
+    ...state,
+    session_token: null,
+    isLoggedIn: false
+  };
+};
 
 const applyLogin = (state, action) => {
   return {

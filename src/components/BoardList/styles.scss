@@ -1,0 +1,11 @@
+@import "utils";
+
+.container {
+    padding-top: 120px;
+    padding-left: 50px;
+    padding-right: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
