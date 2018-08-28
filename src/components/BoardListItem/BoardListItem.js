@@ -4,8 +4,15 @@ import classNames from "classnames/bind";
 
 const cx = classNames.bind(styles);
 
-const BoardListItem = ({ content, id, title, username, profile_image }) => (
-  <div className={cx("container")}>
+const BoardListItem = ({
+  content,
+  id,
+  title,
+  username,
+  profile_image,
+  onClickBoardItem
+}) => (
+  <div className={cx("container")} onClick={() => onClickBoardItem(id)}>
     <div>
       <img
         src={

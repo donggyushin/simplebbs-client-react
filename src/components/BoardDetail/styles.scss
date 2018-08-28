@@ -1,0 +1,86 @@
+@import "utils";
+
+.container {
+    position: fixed;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba($color: #000000, $alpha: 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .boxContainer {
+        display: flex;
+.box {
+        background-color: white;
+        @include radius;
+        color: #000000;
+        padding: 15px;
+        width: 523px;
+        height: 600px;
+        .header {
+            display: flex;
+            justify-content: flex-end;
+            margin-right: 15px;
+            .close {
+                cursor: pointer;
+            }
+        }
+        .body {
+            .profile {
+                .image {
+                    margin-right: 10px;
+                    @include profileImage;
+                }
+                .username {
+
+                }
+                margin-bottom: 20px;
+            }
+            .title{
+
+            }
+            .content {
+                height: 370px;
+                padding: 8px;
+                overflow-y: scroll;
+                background-color: $weak_gray;
+            }
+        }
+    }
+
+    .comment {
+        color: #000000;
+        height: 627px;
+        width: 291px;
+        @include radius;
+        background-color: white;
+        margin-left: 5px;
+        .input {
+            padding: 10px;
+            input {
+                padding:7px;
+                @include radius;
+                width: 240px;
+            }
+        }
+        .commentList {
+            padding: 10px;
+            height: 450px;
+            overflow-y: auto;
+            .commentItem {
+                font-size:11px;
+                .username {
+                    font-size: 13px;
+                    font-weight: 500;
+                }
+                span {
+                    margin-right: 6px;
+                }
+            }
+        }
+    }
+    }
+    
+}

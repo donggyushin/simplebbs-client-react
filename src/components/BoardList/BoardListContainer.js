@@ -24,13 +24,16 @@ class BoardListContainer extends Component {
 
   render() {
     const { loading } = this.state;
-    const { boards } = this.props;
-    return <BoardList loading={loading} boards={boards} />;
+    const { boards, boardDetail } = this.props;
+    return (
+      <BoardList loading={loading} boardDetail={boardDetail} boards={boards} />
+    );
   }
 }
 
 const mapStateToProps = state => ({
-  boards: state.board.boards
+  boards: state.board.boards,
+  boardDetail: state.board.boardDetail
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
