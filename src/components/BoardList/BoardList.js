@@ -3,10 +3,11 @@ import styles from "./styles.scss";
 import classNames from "classnames/bind";
 import BoardListItemContainer from "components/BoardListItem/BoardListItemContainer";
 import BoardDetailContainer from "components/BoardDetail/BoardDetailContainer";
+import WriteContainer from "components/Write/WriteContainer";
 
 const cx = classNames.bind(styles);
 
-const BoardList = ({ loading, boards, boardDetail }) => (
+const BoardList = ({ loading, boards, boardDetail, boardWrite }) => (
   <div className={cx("container")}>
     {loading
       ? "loading"
@@ -14,6 +15,7 @@ const BoardList = ({ loading, boards, boardDetail }) => (
           <BoardListItemContainer {...board} key={board.id} />
         ))}
     {boardDetail && <BoardDetailContainer />}
+    {boardWrite && <WriteContainer />}
   </div>
 );
 

@@ -8,8 +8,18 @@ const GET_BOARD_DETAIL = "board/GET_BOARD_DETAIL";
 const CLOSE_BOARD_DETAIL = "board/CLOSE_BOARD_DETAIL";
 const REMOVE_BOARD_DETAIL = "board/REMOVE_BOARD_DETAIL";
 const REGISTER_COMMENT = "board/REGISTER_COMMENT";
+const TURN_OFF_WRITE_FORM = "board/TURN_OFF_WRITE_FORM";
+const TURN_ON_WRITE_FORM = "board/TURN_ON_WRITE_FORM";
 
 //action creators
+
+export const TurnOnWriteForm = () => ({
+  type: TURN_ON_WRITE_FORM
+});
+
+export const TurnOffWriteForm = () => ({
+  type: TURN_OFF_WRITE_FORM
+});
 
 export const RegisterComment = comments => ({
   type: REGISTER_COMMENT,
@@ -39,6 +49,26 @@ export const getBoards = boards => ({
 });
 
 //api actions
+
+export const apiRegistNewBoard = (title, content) => {
+  return dispatch => {
+    axios
+      .post("/api/board/", {
+        title,
+        content
+      })
+      .then(response => response.data)
+      .then(data => {
+        console.log("here");
+        console.log(data);
+        if (data.ok) {
+          dispatch(TurnOffWriteForm());
+          dispatch(apiGetBoards());
+        }
+      })
+      .catch(err => console.log(err));
+  };
+};
 
 export const apiRegisterCommet = (boardId, message) => {
   return dispatch => {
@@ -91,7 +121,8 @@ export const apiGetBoards = () => {
 const initialState = {
   boards: null,
   boardDetail: false,
-  boardDetails: null
+  boardDetails: null,
+  boardWrite: false
 };
 
 //reducers
@@ -110,12 +141,30 @@ export default function reducer(state = initialState, action) {
       return applyRemoveBoardDetail(state, action);
     case REGISTER_COMMENT:
       return applyRegisterComment(state, action);
+    case TURN_OFF_WRITE_FORM:
+      return applyTurnOffWriteForm(state, action);
+    case TURN_ON_WRITE_FORM:
+      return applyTurnOnWriteForm(state, action);
     default:
       return state;
   }
 }
 
 //reducer actions
+
+const applyTurnOnWriteForm = (state, action) => {
+  return {
+    ...state,
+    boardWrite: true
+  };
+};
+
+const applyTurnOffWriteForm = (state, action) => {
+  return {
+    ...state,
+    boardWrite: false
+  };
+};
 
 const applyRegisterComment = (state, action) => {
   const { comments } = action;

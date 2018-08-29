@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Navigation from "components/Navigation/Navigation";
 import * as userActions from "store/modules/user";
+import * as boardActions from "store/modules/board";
 
 class NavigationContainer extends Component {
   state = {
@@ -20,6 +21,11 @@ class NavigationContainer extends Component {
     apiLogout();
   };
 
+  _clickWriteButton = () => {
+    const { TurnOnWriteForm } = this.props;
+    TurnOnWriteForm();
+  };
+
   render() {
     const { boxVisible } = this.state;
     return (
@@ -27,6 +33,7 @@ class NavigationContainer extends Component {
         boxVisible={boxVisible}
         toggleBoxVisible={this._toggleBoxVisible}
         clickLogout={this._clickLogout}
+        clickWriteButton={this._clickWriteButton}
       />
     );
   }
@@ -35,7 +42,8 @@ class NavigationContainer extends Component {
 const mapStateToProps = state => ({});
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  apiLogout: () => dispatch(userActions.apiLogout())
+  apiLogout: () => dispatch(userActions.apiLogout()),
+  TurnOnWriteForm: () => dispatch(boardActions.TurnOnWriteForm())
 });
 
 export default connect(

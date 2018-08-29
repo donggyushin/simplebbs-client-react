@@ -10,15 +10,16 @@ const BoardListItem = ({
   title,
   username,
   profile_image,
-  onClickBoardItem
+  onClickBoardItem,
+  userId
 }) => (
   <div className={cx("container")} onClick={() => onClickBoardItem(id)}>
     <div>
       <img
         src={
           profile_image
-            ? `/media/${profile_image}`
-            : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiuJsdm0rgK431zYw7TBcPkzqdD6MJz0aPez2nFxm1EeKuosCaYg"
+            ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiuJsdm0rgK431zYw7TBcPkzqdD6MJz0aPez2nFxm1EeKuosCaYg"
+            : `/media/${userId % 5}.jpeg`
         }
       />
       <span>{username}</span>

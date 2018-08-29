@@ -5,7 +5,12 @@ import { FaAlignJustify } from "react-icons/fa";
 
 const cx = classNames.bind(styles);
 
-const Navigation = ({ boxVisible, toggleBoxVisible, clickLogout }) => (
+const Navigation = ({
+  boxVisible,
+  toggleBoxVisible,
+  clickLogout,
+  clickWriteButton
+}) => (
   <div className={cx("container")}>
     <span onClick={toggleBoxVisible}>
       <FaAlignJustify />
@@ -13,7 +18,7 @@ const Navigation = ({ boxVisible, toggleBoxVisible, clickLogout }) => (
     {boxVisible && (
       <div className={cx("box")}>
         <span onClick={clickLogout}>logout</span>
-        <span>profile</span>
+        <span onClick={clickWriteButton}>write</span>
       </div>
     )}
   </div>
